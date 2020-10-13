@@ -6,6 +6,15 @@ function mergeSortedArrays(array1, array2){
   length1 = array1.length;
   length2 = array2.length;
 
+  //check input
+  if (length1 === 0) {
+    return array2;
+  }
+
+  if (length2 == 0) {
+    return array1;
+  }
+
   while (j!= length1 && k!= length2) {
     if(array1[j] <= array2[k]) {
       mergedArray[i] = array1[j];
