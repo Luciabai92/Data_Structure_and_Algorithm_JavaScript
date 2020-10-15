@@ -75,7 +75,7 @@ class myLinkedList {
     this.length--;
   }
 
-traversToIndex(index) {
+  traversToIndex(index) {
     let preNode = this.head;
     while (index-1 !== 0) {
       preNode = preNode.next;
@@ -83,6 +83,26 @@ traversToIndex(index) {
     }
     return preNode;
   }
+
+  reverse() {
+    if(this.head === null) return null;
+    if(this.head.next === null) return this.head;
+
+    let prev = this.head, curr = prev.next;
+
+    this.head = this.tail;
+    this.tail = prev;
+    prev.next = null;
+
+    while (curr != null) {
+      const next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+    return this;
+  }
+
 }
 
 const linkedList = new myLinkedList(10);
@@ -90,6 +110,8 @@ linkedList.append(5);
 linkedList.append(16);
 linkedList.prepend(1);
 linkedList.insert(15,99);
+linkedList.remove(0);
+
 linkedList.printList();
-linkedList.remove(1);
+linkedList.reverse();
 linkedList.printList();
