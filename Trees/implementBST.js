@@ -64,6 +64,34 @@ class BinarySearchTree {
 
 }
 
+//traverse
+function traverse(node) {
+  const tree = {
+    value: node.value
+  };
+
+  if(node.left === null) {
+    tree.left = null;
+  } else {
+    tree.left = traverse(node.left);
+  }
+
+  if(node.right === null) {
+    tree.right =  null;
+  } else {
+    tree.right = traverse(node.right);
+  }
+
+  return tree;
+}
+
+// function traverse(node) {
+//   const tree = { value: node.value };
+//   tree.left = node.left === null ? null : traverse(node.left);
+//   tree.right = node.right === null ? null : traverse(node.right);
+//   return tree;
+// }
+
 const tree = new BinarySearchTree();
 tree.insert(9);
 tree.insert(4);
@@ -72,15 +100,8 @@ tree.insert(20);
 tree.insert(170);
 tree.insert(15);
 tree.insert(1);
-JSON.stringify(traverse(tree.root))
-console.log(tree.lookup(20))
+console.log(JSON.stringify(traverse(tree.root)));
+//console.log(tree.lookup(20))
 //     9
 //  4     20
 //1  6  15  170
-
-function traverse(node) {
-  const tree = { value: node.value };
-  tree.left = node.left === null ? null : traverse(node.left);
-  tree.right = node.right === null ? null : traverse(node.right);
-  return tree;
-}
